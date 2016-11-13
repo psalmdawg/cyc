@@ -1,0 +1,51 @@
+<h3>Camp info page</h3>
+<h2>and booking form</h2>
+
+
+populate from database for specific camp. "Show detail"
+
+include the data with the booking.
+<div class="user_info_booking">
+  <ul>
+    <li>User id: {{user.id}}.</li>
+    <li>Username: {{user.username}}.</li>
+    <li>Users Names: {{user.name}}.</li>
+    <li>Your email: {{ user.email}}.</li>
+  </ul>
+</div>
+
+<form method="post" action="/bookings/book">
+    <input type="hidden" name="camp_id" value="1">
+   <div class="form-group">
+    <label>Attendees Name</label>
+    <input type="text" class="form-control" placeholder="{{user.name}}" name="name">
+  </div>
+  <div class="form-group">
+   <label>Parent/Guardian Contact Name</label>
+   <input type="text" class="form-control" placeholder="{{user.name}}" name="pg_name">
+ </div>
+  <div class="form-group">
+    <label>Address</label>
+    <input type="text" class="form-control" placeholder="Address" name="address">
+  </div>
+  <div class="form-group">
+    <label>Contact Telephone</label>
+    <input type="text" class="form-control" placeholder="Address" name="contact_number">
+  </div>
+  <div class="form-group">
+    <label>Special Information</label>
+    <input type="text" class="form-control" placeholder="Dietry requirements etc." name="special_information">
+  </div>
+  <div class="form-group">
+    <!-- <label>Special Information</label> -->
+    <input type="hidden" class="form-control" value="{{user.id}}" name="user_id">
+    <input type="hidden" class="form-control" value="{{user.username}}" name="username">
+    <input type="hidden" class="form-control" value="{{user.email}}" name="user_email">
+    <input type="hidden" class="form-control" value="{{user.name}}" name="name_of_user">
+
+
+
+
+  </div>
+  <button type="submit" class="btn btn-default">Review Booking</button>
+</form>

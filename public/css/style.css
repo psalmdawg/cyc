@@ -1,0 +1,170 @@
+/* Space out content a bit */
+html{
+  background-color: black;
+}
+body {
+  padding-top: 20px;
+  padding-bottom: 20px;
+  background-color: black;
+  color: white;
+}
+
+/* Everything but the jumbotron gets side spacing for mobile first views */
+.header,
+.marketing,
+.footer {
+  padding-right: 15px;
+  padding-left: 15px;
+}
+
+/* Custom page header */
+.header {
+  padding-bottom: 20px;
+  border-bottom: 1px solid #e5e5e5;
+}
+/* Make the masthead heading the same height as the navigation */
+.header h3 {
+  margin-top: 0;
+  margin-bottom: 0;
+  line-height: 40px;
+}
+
+/* Custom page footer */
+.footer {
+  padding-top: 19px;
+  color: #777;
+  border-top: 1px solid #e5e5e5;
+}
+
+/* Customize container */
+@media (min-width: 768px) {
+  .container {
+    max-width: 730px;
+  }
+}
+.container-narrow > hr {
+  margin: 30px 0;
+}
+
+/* Main marketing message and sign up button */
+.jumbotron {
+  text-align: center;
+  border-bottom: 1px solid #e5e5e5;
+}
+.jumbotron .btn {
+  padding: 14px 24px;
+  font-size: 21px;
+}
+
+/* Supporting marketing content */
+.marketing {
+  margin: 40px 0;
+}
+.marketing p + h4 {
+  margin-top: 28px;
+}
+
+.page-header{
+  margin-top:0;
+}
+
+.footer{
+  margin-top:40px;
+}
+.none{
+  text-decoration: none;
+}
+
+.camp_thumb{
+  /*background-color: lightgrey;*/
+  background-image: url("../images/camp.jpg");
+  background-size: 180%;
+  width: 100px;
+  height: 100px;
+  line-height:100px;
+  margin: 20px;
+  text-align:center;
+  border-radius: 10px;
+  text-decoration: none;
+  transition: 0.5s;
+  display: inline-block;
+  overflow: hidden;
+  position: center;
+  repeat: no-repeat;
+  color:#d4fd02;
+  font-weight: bold;
+}
+
+.camp_thumb:hover{
+  /*background: #01b7ee;*/
+  transition: all .3s ease-in-out;
+  background-size: 165%;
+  position: center;
+  repeat: no-repeat;
+
+  }
+
+  &:hover
+    background:
+      size: 100%
+  position: relative
+  p
+    position: absolute
+    bottom: 0
+    left: 0
+    width: 100%
+    color: white
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.5)
+    background: rgba(black, 0.4)
+    padding: 0.5em
+    margin: 0
+    box-sizing: border-box
+body
+  margin: 1em
+
+.cmp_thmbnl_pic{
+  max-width:150%;
+  transition: 0.5s
+}
+.cmp_thmbnl_pic:hover{
+  max-width:160%;
+  transition: 0.5s
+}
+ a:hover{
+  text-decoration:none;
+}
+
+.camp_container{
+  max-width: 100%;
+}
+.camp_info{
+  margin-top:2%;
+  max-width: 75%;
+  float: right;
+}
+
+h1,h2,h3,h4,h5{
+  color: #01b7ee;
+}
+
+.logo{
+  max-width: 20%;
+}
+/* Responsive: Portrait tablets and up */
+@media screen and (min-width: 768px) {
+  /* Remove the padding we set earlier */
+  .header,
+  .marketing,
+  .footer {
+    padding-right: 0;
+    padding-left: 0;
+  }
+  /* Space out the masthead */
+  .header {
+    margin-bottom: 30px;
+  }
+  /* Remove the bottom border on the jumbotron for visual effect */
+  .jumbotron {
+    border-bottom: 0;
+  }
+}
