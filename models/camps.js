@@ -15,6 +15,10 @@ var CampSchema = mongoose.Schema({
   },
   dates: {
     type: String
+  },
+  status: {
+    type: Boolean,
+    default: true,
   }
 });
 

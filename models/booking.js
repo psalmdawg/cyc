@@ -4,14 +4,16 @@ var BookingSchema = mongoose.Schema({
   camp_id:{
     type:String
   },
-  name: {
-    type: String,
-    index:true
+  camp_name:{
+    type:String
   },
-  booking_email: {
+  attendee_name: {
     type: String
   },
   pgName: {
+    type: String
+  },
+  booking_email: {
     type: String
   },
   address: {

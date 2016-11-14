@@ -18,12 +18,12 @@ var routes = require('./routes/index');
 var users = require('./routes/users');
 var bookings = require('./routes/bookings');
 var camps = require('./routes/camps');
+var admin = require('./routes/admin');
 
 //init app.
 var app = express();
 
 //view engine
-
 app.set('views', path.join(__dirname, 'views'));
 app.engine('handlebars', exphbs({defaultLayout: 'layout'}));
 app.set('view engine', 'handlebars');
@@ -81,6 +81,7 @@ app.use('/', routes);
 app.use('/users', users);
 app.use('/bookings', bookings);
 app.use('/camps', camps);
+app.use('/admin', admin);
 
 //set port
 app.set('port', process.env.PORT || 3000);

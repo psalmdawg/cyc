@@ -23,6 +23,8 @@ router.get('/todo',  function(req,res){
   res.render('todo');
 })
 
+// see this wrbsite
+// http://stackoverflow.com/questions/14188834/documentation-for-ensureauthentication-isauthenticated-passports-functions
 function ensureAuthenticated(req, res, next){
   if(req.isAuthenticated()){
     return next();

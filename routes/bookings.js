@@ -9,18 +9,18 @@ router.get("/info", ensureAuthenticated, function(req, res){
 })
 
 router.post("/book", function(req, res){
-  // var camp_id = req.body.camp_id;
-  var name = req.body.name
-  var booking_email = req.body.user_email;
+  var attendee_name = req.body.attendee_name;
+  var booking_email = req.body.booking_email;
   var pgName = req.body.pg_name;
   var address = req.body.address;
   var contact_number = req.body.contact_number;
   var special_info = req.body.special_information;
   var user_id = req.body.user_id;
   var username = req.body.username;
-  var user_email = req.body.email;
+  var user_email = req.body.user_email;
   var name_of_user = req.body.name_of_user;
   var camp_id = req.body.camp_id;
+  var camp_name = req.body.camp_name;
 
 
   var errors = req.validationErrors();
@@ -30,7 +30,7 @@ router.post("/book", function(req, res){
     });
   } else {
     var newBooking = new Booking({
-      name:name,
+      attendee_name:attendee_name,
       booking_email:booking_email,
       pgName:pgName,
       address:address,
@@ -40,7 +40,8 @@ router.post("/book", function(req, res){
       username:username,
       user_email :user_email,
       name_of_user:name_of_user,
-      camp_id:camp_id
+      camp_id:camp_id,
+      camp_name: camp_name
     })
 
   newBooking.save(function(err, newBooking){
@@ -50,8 +51,6 @@ router.post("/book", function(req, res){
   req.flash('success_msg', 'Booking Saved!')
   res.redirect('/');
   }
-
-
 })
 
 

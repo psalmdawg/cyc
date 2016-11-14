@@ -12,18 +12,23 @@
 </p>
 
 <ul class="nav nav-pills">
-  <li role="presentation" ><a href="/camps/camps">Book a Camp</a></li>
+  <li role="presentation" ><a href="/camps/index">Book a Camp</a></li>
   <!-- <li role="presentation" ><a href="#">Your bookings</a></li> -->
 </ul>
 <br>
 <h4>Your bookings</h3>
 <div class="">
-  if your name is here this works
   <br>
-{{#each bookings}}
-<ul>
-  <li>{{name}}</li>
-</ul>
+  {{#if bookings}}
+    {{#each bookings}}
 
-{{/each}}
+      <ul>
+        <li><a href="#">{{camp_name}}</a></li>
+      </ul>
+    {{/each}}
+  {{else}}
+      You are not booked into any camp.
+
+
+  {{/if}}
 </div>

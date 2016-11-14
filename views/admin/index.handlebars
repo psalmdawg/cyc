@@ -1,0 +1,45 @@
+<h1>Admin home</h1>
+<ul>
+  <li>list of all camps</li>
+  <li>camps status: online/offline/full etc</li>
+  <li>link to edit camps</li>
+  <li>link to camps</li>
+  <li>link to create new camp</li>
+</ul>
+<h2>create new camp</h2>
+<li role="presentation" ><a href="/camps/create">CREATE CAMP</a></li>
+<br>
+<hr>
+<h2>All camps:</h2>
+<h3>Online camps</h3>
+<hr>
+{{# each onLine}}
+  <a href="admin/{{_id}}">
+
+    <div class="camp_container">
+      <div class="camp_thumb">
+        {{name}}
+      </div>
+      <div class="camp_info">
+        {{description}}
+      </div>
+    </div>
+  </a>
+{{/each}}
+
+<h3>Offline camps</h3>
+<hr>
+{{# each offLine}}
+  <a href="admin/{{_id}}">
+
+    <div class="camp_container">
+      <div class="camp_thumb">
+        {{name}}
+      </div>
+      <div class="camp_info">
+        {{description}}
+      </div>
+    </div>
+  </a>
+{{/each}}
+<h3>History</h3>

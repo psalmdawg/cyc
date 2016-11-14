@@ -1,0 +1,36 @@
+<h2>Book your camp ☺️</h2>
+{{#if errors}}
+      {{#each errors}}
+        <div class="alert alert-danger">{{msg}}</div>
+      {{/each}}
+{{/if}}
+<p>
+  Jolly Hockeysticks! Book your stay at an exciting burleigh heads camp here.
+</p>
+<div class="user_info_booking">
+  <ul>
+    <li>User id: {{user.id}}.</li>
+    <li>Username: {{user.username}}.</li>
+    <li>Users Names: {{user.name}}.</li>
+    <li>Your email: {{ user.email}}.</li>
+  </ul>
+</div>
+
+<h2>All Camps</h2>
+{{# each camplist}}
+  {{status}}
+  <a href="/camps/{{_id}}">
+    <div class="camp_container">
+      <div class="camp_thumb">
+        <!-- <img class="cmp_thmbnl_pic" src="../images/camp.jpg" alt="camp image"> -->
+          <!-- <div class="item-overlay top">Camp A</div> -->
+          {{name}}
+      </div>
+      <div class="camp_info">
+        {{description}}
+     </div>
+
+    </div>
+  </a>
+
+{{/each}}

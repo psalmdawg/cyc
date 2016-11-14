@@ -13,7 +13,8 @@ var UserSchema = mongoose.Schema({
   },
   name: {
     type: String, trim:true
-  }
+  },
+  admin: Boolean, default: false
 });
 
 // UserSchema.plugin(passportLocalMongoose, {usernameLowerCase: true});
