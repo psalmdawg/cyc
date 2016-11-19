@@ -15,22 +15,17 @@
   <div class="header clearfix">
     <nav>
       <ul class="nav nav-pills pull-right">
-        <li role="presentation" ><a href="/admin">Admin</a></li>
-        <li role="presentation" ><a href="/camps/index">Camps</a></li>
-
-        <li role="presentation" ><a href="/camps/create">camp creator DELETE</a></li>
         {{#if user}}
-          <!-- <li role="presentation" >{{user.name}}</li> -->
-          <li role="presentation" ><a href="/">Dashboard</a></li>
+          <li role="presentation" ><a href="/">Home</a></li>
           <li role="presentation"><a href="/users/logout">Logout</a></li>
         {{else }}
           <li role="presentation"><a href="/users/login">Login</a></li>
-          <li role="presentation"><a href="/users/register">Register</a></li>
+          <li role="presentation"><a href="/users/register">Sign Up</a></li>
         {{/if}}
       </ul>
     </nav>
     <!-- <h3 class="text-muted">CYC Bookings</h3> -->
-    <a href="/todo"><img class='logo' src="/images/cyc_logo.jpg" alt="logo" /></a>
+    <a href="/"><img class='logo' src="/images/cyc_logo.jpg" alt="logo" /></a>
   </div>
 
   <div class="row ">
@@ -54,6 +49,9 @@
 
   <footer class="footer">
     <p>&copy; 2016 Pauly.</p>
+    <ul class="nav nav-pills pull-left">
+      <li role="presentation" ><a href="/admin">Admin</a></li>
+    </ul>
   </footer>
 
 </div> <!-- /container -->

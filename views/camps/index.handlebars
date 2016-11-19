@@ -1,36 +1,32 @@
-<h2>Book your camp ☺️</h2>
+<h2>Book your camp</h2>
 {{#if errors}}
       {{#each errors}}
         <div class="alert alert-danger">{{msg}}</div>
       {{/each}}
 {{/if}}
-<p>
-  Jolly Hockeysticks! Book your stay at an exciting burleigh heads camp here.
-</p>
-<div class="user_info_booking">
-  <ul>
-    <li>User id: {{user.id}}.</li>
-    <li>Username: {{user.username}}.</li>
-    <li>Users Names: {{user.name}}.</li>
-    <li>Your email: {{ user.email}}.</li>
-  </ul>
-</div>
 
-<h2>All Camps</h2>
+<div id="info_box">
+
+</div>
 {{# each camplist}}
-  {{status}}
   <a href="/camps/{{_id}}">
     <div class="camp_container">
       <div class="camp_thumb">
-        <!-- <img class="cmp_thmbnl_pic" src="../images/camp.jpg" alt="camp image"> -->
-          <!-- <div class="item-overlay top">Camp A</div> -->
-          {{name}}
+        {{name}}
       </div>
       <div class="camp_info">
-        {{description}}
-     </div>
-
+        {{description}}. {{dates}}
+      </div>
     </div>
   </a>
 
 {{/each}}
+
+<script type="text/javascript">
+window.onload = function() {
+  var info_box = document.getElementById('info_box');
+  if({{camplist.length}} === 0 ){
+    info_box.innerHTML = "There are currently no available camps"
+  }
+}; //window.onload
+</script>

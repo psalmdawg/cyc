@@ -5,35 +5,27 @@ var Camp = require('../models/camps')
 
 
 
-router.get('/', ensureAuthenticated, function(req, res){
-  console.log(req.user.admin)
+router.get('/', ensureAuthenticated, ensureAdmin, function(req, res){
 
   var offLine = [];
   var onLine = [];
 
-  if (req.user.admin === true){
-    Camp.find({}, function(err, camps){
-      for(var i in camps){
-        if(camps[i].status === true){
-          onLine.push(camps[i]);
-        } else {
-          offLine.push(camps[i]);
-        }
+  Camp.find({}, function(err, camps){
+    for(var i in camps){
+      if(camps[i].status === true){
+        onLine.push(camps[i]);
+      } else {
+        offLine.push(camps[i]);
       }
-      res.render('admin/index', {
-        onLine:onLine,
-        offLine:offLine
-      });
+    }
+    res.render('admin/index', {
+      onLine:onLine,
+      offLine:offLine
     });
-  } else {
-    req.flash('error_msg', 'Access Forbidden')
-    res.redirect('/')
-  }
+  });
 })
 
-router.get('/:id', ensureAuthenticated, function(req, res){
-  console.log(req.user.admin)
-  if (req.user.admin === true){
+router.get('/:id',  ensureAuthenticated, ensureAdmin, function(req, res){
     Camp.findOne({'_id':req.params.id}, function(err, camp){
       if(err) throw err;
       console.log(camp)
@@ -41,33 +33,22 @@ router.get('/:id', ensureAuthenticated, function(req, res){
         camp:camp
       });
     });
-  } else {
-    req.flash('error_msg', 'Access Forbidden')
-    res.redirect('/')
-  }
 });
 
-// Camp.find({}, function(err, camps){
-//   for(var i in camps){
-//     if(camps[i].status === true){
-//       onLine.push(camps[i]);
-//     } else {
-//       offLine.push(camps[i]);
-//     }
-//   }
-
-//   onLine:onLine,
-//   offLine:offLine
-// });
-// });
-
-
+function ensureAdmin(req, res, next){
+  if(req.user.admin === true){
+    return next()
+  } else {
+    req.flash('error_msg', "Access Denied Bitch")
+    res.redirect('/')
+  }
+}
 
 function ensureAuthenticated(req, res, next){
   if(req.isAuthenticated()){
     return next();
   } else {
-    // req.flash('error_msg', 'you are not logged in')
+    req.flash('error_msg', 'Please log in, or sign up')
     res.redirect('/users/login');
   }
 }

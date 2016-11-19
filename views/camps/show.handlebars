@@ -1,16 +1,15 @@
-<h1>individual camp</h1>
 <div>Camp name: {{camp.name}}</div>
 <div class="camp_description">
   Description: {{camp.description}}
 </div>
 <div class="camp_cost">Cost: {{camp.cost}}</div>
-<a href="/book/{{camp._id}}">Book Now</a>
+<div class="camp_dates">Date: {{camp.dates}}</div>
+<div class="camp_dates">length: {{camp.length}}</div>
 
 
-<br>
+<!-- <br> -->
 <hr>
-<br>
-<h1>authenitacate user here</h1>
+<!-- <br>
 <div class="user_info_booking">
   users info (hide)
   <ul>
@@ -19,10 +18,11 @@
     <li>Users Names: {{user.name}}.</li>
     <li>Your email: {{ user.email}}.</li>
   </ul>
-</div>
+</div> -->
 
 <div class="">
-  {{camp.name}}
+  {{camp.name}}:
+  {{camp.dates}}
 </div>
 <form method="post" action="/bookings/book">
 
@@ -58,7 +58,7 @@
     <input type="hidden" class="form-control" value="{{user.name}}" name="name_of_user">
     <input type="hidden" name="camp_name" value="{{camp.name}}">
     <input type="hidden" name="camp_id" value="{{camp._id}}">
-
+    <input type="hidden" name="camp_date" value="{{camp.dates}}">
 
 
 

@@ -1,18 +1,8 @@
-<h2 class= "page-header">Dashboard</h2>
 <p>
   Welcome {{user.name}}!
-</p>
-<p>
-  This section must link to a database of available camps. which must be editable by CYC staff.
-
-</p>
-<p>
-  Camp records will have info, camp status (on hold or bookable) etc.
-
-</p>
 
 <ul class="nav nav-pills">
-  <li role="presentation" ><a href="/camps/index">Book a Camp</a></li>
+  <li role="presentation" ><a href="/camps/index">Book a Camp?</a></li>
   <!-- <li role="presentation" ><a href="#">Your bookings</a></li> -->
 </ul>
 <br>
@@ -21,14 +11,11 @@
   <br>
   {{#if bookings}}
     {{#each bookings}}
-
-      <ul>
-        <li><a href="#">{{camp_name}}</a></li>
+      <ul class="list-group">
+      <a href="/bookings/{{_id}}"> <li class="list-group-item">{{camp_name}}, {{camp_date}}.</li></a>
       </ul>
     {{/each}}
   {{else}}
       You are not booked into any camp.
-
-
   {{/if}}
 </div>

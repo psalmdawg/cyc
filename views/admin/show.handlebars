@@ -1,40 +1,74 @@
-<h1>Camp analytics</h1>
-show details of each camp
-
-<ul>
-  <li>Title: {{camp.name}}</li>
-  <li>Desc: {{camp.description}}</li>
-  <li>Cost: {{camp.cost}}</li>
-  <li>Dates: {{camp.dates}}</li>
-</ul>
-
-<h2>Edit:</h2>
-<div class="">
-  set camp offline
-  <button class="btn btn-primary" type="button" name="offline">Offline.</button>
+<h4>Edit Camp:</h4>
+<br>
+<div class="" style="border: darkgrey solid 1px; border-radius: 8px; padding: 8px;">
+  <label for="toggle">Set Camp Status </label>
+  <button class="btn" id="toggle"></button>
 </div>
+
+<br>
+<br>
 <form method="post" action="/camps/update">
    <div class="form-group">
     <label>Camp Name</label>
-    <input type="text" class="form-control" placeholder="Name" name="name">
+    <input type="text" class="form-control" placeholder="{{camp.name}}" name="name" value="{{camp.name}}">
   </div>
   <div class="form-group">
    <label>Description</label>
-   <input type="text" class="form-control" placeholder="Description" name="description">
+   <input type="text" class="form-control" placeholder="Description"  name="description" value="{{camp.description}}">
  </div>
   <div class="form-group">
     <label>Cost</label>
-    <input type="text" class="form-control" placeholder="Cost" name="cost">
+    <input type="text" class="form-control" placeholder="Cost" name="cost" value="{{camp.cost}}">
   </div>
   <div class="form-group">
     <label>Duration</label>
-    <input type="text" class="form-control" placeholder="How long is the camp?" name="length">
+    <input type="text" class="form-control" placeholder="How long is the camp?" name="length" value="{{camp.length}}">
   </div>
   <div class="form-group">
     <label>Dates</label>
-    <input type="text" class="form-control" placeholder="Dates" name="dates">
+    <input type="text" class="form-control" placeholder="Dates" name="dates" value="{{camp.dates}}">
   </div>
   <input type="hidden" name="camp_id" value="{{camp._id}}">
-  <button type="submit" class="btn btn-default">Save Camp</button>
+  <input id="camp_status" type="hidden" name="statusVal" >
 
+
+
+  <button type="submit" class="btn btn-default">Save Updates</button>
 </form>
+
+
+
+<script>
+  window.onload = function(){
+    checkStatus();
+  }
+
+  var statusInput = document.getElementById('camp_status');
+  var btn = document.getElementById('toggle');
+
+  function checkStatus(){
+    if({{camp.status}} === true){
+      btn.innerHTML = "Live";
+      statusInput.value = true;
+      btn.className = "btn btn-success";
+    } else {
+      btn.innerHTML = "Offline";
+      statusInput.value = false;
+      btn.className = "btn btn-danger";
+
+    };
+  };
+
+  btn.addEventListener("click", function( event ) {
+    if(btn.innerHTML === "Live"){
+      btn.innerHTML ="Offline"
+      statusInput.value = false
+      btn.className = "btn btn-danger";
+    } else if (
+      btn.innerHTML === "Offline"){
+      btn.innerHTML = "Live"
+      statusInput.value = true
+      btn.className = "btn btn-success";
+    }
+  }, false);
+</script>

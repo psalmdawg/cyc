@@ -8,6 +8,15 @@ router.get("/info", ensureAuthenticated, function(req, res){
   res.render('bookings/info');
 })
 
+router.get("/:id", ensureAuthenticated, function(req, res){
+  Booking.findOne({'_id':req.params.id}, function(err, booking){
+    if(err) throw err;
+    res.render('bookings/show', {
+      booking:booking
+    });
+  });
+})
+
 router.post("/book", function(req, res){
   var attendee_name = req.body.attendee_name;
   var booking_email = req.body.booking_email;
@@ -21,11 +30,19 @@ router.post("/book", function(req, res){
   var name_of_user = req.body.name_of_user;
   var camp_id = req.body.camp_id;
   var camp_name = req.body.camp_name;
+  var camp_date = req.body.camp_date;
+
+
+  req.checkBody('attendee_name', 'name is required').notEmpty();
+  req.checkBody('booking_email', 'Email is required').notEmpty();
+  req.checkBody('booking_email', 'Email is not valid').isEmail();
+  req.checkBody('contact_number', 'Contact number is required').notEmpty();
+  req.checkBody('address', 'Contact address is required').notEmpty();
 
 
   var errors = req.validationErrors();
   if(errors){
-    res.render('/bookings/info', {
+    res.render('camps/index', {
       errors:errors
     });
   } else {
@@ -41,7 +58,8 @@ router.post("/book", function(req, res){
       user_email :user_email,
       name_of_user:name_of_user,
       camp_id:camp_id,
-      camp_name: camp_name
+      camp_name: camp_name,
+      camp_date: camp_date
     })
 
   newBooking.save(function(err, newBooking){
@@ -53,13 +71,10 @@ router.post("/book", function(req, res){
   }
 })
 
-
-
 function ensureAuthenticated(req, res, next){
   if(req.isAuthenticated()){
     return next();
   } else {
-    // req.flash('error_msg', 'you are not logged in')
     res.redirect('/users/login');
   }
 }

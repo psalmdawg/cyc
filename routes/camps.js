@@ -3,9 +3,10 @@ var router = express.Router();
 var mongo = require('mongodb');
 var Camp = require('../models/camps')
 var mongoose = require('mongoose');
+var ObjectId = require('mongodb').ObjectId;
 
 
-router.get('/index',  function(req,res){
+router.get('/index', ensureAuthenticated, function(req,res){
   Camp.find({}, function(err, camps){
   //filters camplist status for true or false. if true camp is live
     var camplist = [];
@@ -20,15 +21,19 @@ router.get('/index',  function(req,res){
   });
 });
 
-router.get('/create',  function(req,res){
-  res.render('camps/create');
+router.get('/create', ensureAuthenticated, ensureAdmin, function(req,res){
+    res.render('camps/create');
+});
+
+router.get('/saved', ensureAuthenticated, function(req,res){
+  res.render('camps/saved');
 });
 
 // see this
 //get this route to show individual camps
 // https://webapplog.com/url-parameters-and-routing-in-express-js/
 
-router.get('/:id',  function(req, res){
+router.get('/:id', ensureAuthenticated, function(req, res){
   Camp.findOne({'_id':req.params.id}, function(err, camp){
     if(err) throw err;
     res.render('camps/show', {
@@ -37,7 +42,7 @@ router.get('/:id',  function(req, res){
   });
 });
 
-router.post('/create', function(req,res){
+router.post('/create', ensureAuthenticated, function(req,res){
   var name = req.body.name;
   var description = req.body.description;
   var cost = req.body.cost;
@@ -63,29 +68,51 @@ router.post('/create', function(req,res){
       console.log(newCamp)
     });
       req.flash('success_msg', 'Camp created!')
-      res.redirect('/camps/index');
+      res.redirect('/admin');
   };
 });
 
-
 router.post('/update', function(req, res){
   var id = req.body.camp_id
-  console.log(id)
-  console.log("which is a  : " + typeof(id))
+  var o_id = new mongo.ObjectID(id);
+
   var name = req.body.name;
   var description = req.body.description;
   var cost = req.body.cost;
-  var duration = req.body.duration;
+  var length = req.body.length;
   var dates = req.body.dates;
+  var status = req.body.statusVal;
 
   Camp.update(
-   { '_id' : ObjectId(id) },
-   { $set: { 'name': newContent } },
-   function (err, result) {
-      if (err) throw err;
-      console.log(result);
-   })
-})
+    { "_id" : o_id },
+    { "$set": {
+      name: name,
+      description: description,
+      cost: cost,
+      length: length,
+      dates: dates,
+      status: status
+    }},
+
+    function (err, result) {
+      if (err){
+        console.log("there is an error: " + err)
+      } else {
+        req.flash('success_msg', 'Camp updated!')
+        res.redirect('/admin');
+      }
+    }
+  )
+});
+
+function ensureAdmin(req, res, next){
+  if(req.user.admin === true){
+    return next()
+  } else {
+    req.flash('error_msg', "Access Denied Bitch")
+    res.redirect('/')
+  }
+};
 
 //authentication fn. try to fully understand the magic here..
 function ensureAuthenticated(req, res, next){

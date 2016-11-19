@@ -10,6 +10,9 @@ var BookingSchema = mongoose.Schema({
   attendee_name: {
     type: String
   },
+  camp_date: {
+    type: String
+  },
   pgName: {
     type: String
   },
