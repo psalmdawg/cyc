@@ -39,7 +39,7 @@ function ensureAdmin(req, res, next){
   if(req.user.admin === true){
     return next()
   } else {
-    req.flash('error_msg', "Access Denied Bitch")
+    req.flash('error_msg', "no access")
     res.redirect('/')
   }
 }

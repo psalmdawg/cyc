@@ -37,3 +37,5 @@ applicants need to be contacted.
 2. save booking data to database.
 3. email confirmation to the person making the booking (user) and email to cycOffice.
 4. booking data from database needs to be csv exportable and analyticaly useable
+
+booking data needs to be downloadable for the parent.

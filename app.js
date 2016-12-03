@@ -21,6 +21,7 @@ var users = require('./routes/users');
 var bookings = require('./routes/bookings');
 var camps = require('./routes/camps');
 var admin = require('./routes/admin');
+var profiles = require('./routes/profiles');
 
 //init app.
 var app = express();
@@ -84,6 +85,7 @@ app.use('/users', users);
 app.use('/bookings', bookings);
 app.use('/camps', camps);
 app.use('/admin', admin);
+app.use('/profiles', profiles);
 
 //set port
 app.set('port', process.env.PORT || 3000);
